@@ -3,7 +3,11 @@
 one:
   face_status: MyString
   in_shower: false
+  product_id: 1
+  user_id: 1
 
 two:
   face_status: MyString
   in_shower: false
+  product_id: 1
+  user_id: 1

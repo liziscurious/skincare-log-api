@@ -46,6 +46,6 @@ class LogsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def log_params
-      params.require(:log).permit(:face_status, :in_shower)
+      params.require(:log).permit(:face_status, :in_shower, :product_id, :user_id)
     end
 end
