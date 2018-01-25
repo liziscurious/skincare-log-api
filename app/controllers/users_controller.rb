@@ -3,6 +3,44 @@ class UsersController < ApplicationController
   before_action :authenticate_token, except: [:login, :create]
   before_action :authorize_user, except: [:login, :create, :index]
 
+  # GET /users
+  def index
+    @users = User.all
+
+    render json: @users
+  end
+
+  # GET /users/1
+  def show
+    render json: get_current_user
+  end
+
+  # POST /users
+  def create
+    user = User.new(user_params)
+
+    if user.save
+      token = create_token(user.id, user.username)
+      render json: {status: :created, location: user, token: token, user: user}
+    else
+      render json: user.errors, status: :unprocessable_entity
+    end
+  end
+
+  # PATCH/PUT /users/1
+  def update
+    if @user.update(user_params)
+      render json: @user
+    else
+      render json: @user.errors, status: :unprocessable_entity
+    end
+  end
+
+  # DELETE /users/1
+  def destroy
+    @user.destroy
+  end
+
   # Authorize User
   def authorize_user
     puts "AUTHORIZE USER"
@@ -22,45 +60,17 @@ class UsersController < ApplicationController
     end
   end
 
-  # GET /users
-  def index
-    @users = User.all
-
-    render json: @users
-  end
-
-  # GET /users/1
-  def show
-    render json: get_current_user
-  end
-
-  # POST /users
-  def create
-    @user = User.new(user_params)
-
-    if @user.save
-      render json: @user, status: :created, location: @user
-    else
-      render json: @user.errors, status: :unprocessable_entity
-    end
-  end
-
-  # PATCH/PUT /users/1
-  def update
-    if @user.update(user_params)
-      render json: @user
-    else
-      render json: @user.errors, status: :unprocessable_entity
-    end
-  end
-
-  # DELETE /users/1
-  def destroy
-    @user.destroy
-  end
-
   private
   # Use callbacks to share common setup or constraints between actions.
+
+  def set_user
+    @user = User.find(params[:id])
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def user_params
+    params.require(:user).permit(:username, :password, :password_digest)
+  end
 
   def create_token(id, username)
     JWT.encode(payload(id, username), ENV['JWT_SECRET'], 'HS256')
@@ -78,12 +88,4 @@ class UsersController < ApplicationController
     }
   end
 
-  def set_user
-    @user = User.find(params[:id])
-  end
-
-  # Only allow a trusted parameter "white list" through.
-  def user_params
-    params.require(:user).permit(:username, :password_digest)
-  end
 end
