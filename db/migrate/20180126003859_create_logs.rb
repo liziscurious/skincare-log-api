@@ -1,10 +1,8 @@
 class CreateLogs < ActiveRecord::Migration[5.2]
   def change
     create_table :logs do |t|
-      t.string :face_status
-      t.boolean :in_shower
-      t.integer :product_id
-      t.integer :user_id
+      t.references :product, foreign_key: true
+      t.references :user, foreign_key: true
 
       t.timestamps
     end

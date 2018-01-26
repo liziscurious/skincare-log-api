@@ -12,7 +12,7 @@ class LogsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create log" do
     assert_difference('Log.count') do
-      post logs_url, params: { log: { face_status: @log.face_status, in_shower: @log.in_shower, product_id: @log.product_id, user_id: @log.user_id } }, as: :json
+      post logs_url, params: { log: { product_id: @log.product_id, user_id: @log.user_id } }, as: :json
     end
 
     assert_response 201
@@ -24,7 +24,7 @@ class LogsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update log" do
-    patch log_url(@log), params: { log: { face_status: @log.face_status, in_shower: @log.in_shower, product_id: @log.product_id, user_id: @log.user_id } }, as: :json
+    patch log_url(@log), params: { log: { product_id: @log.product_id, user_id: @log.user_id } }, as: :json
     assert_response 200
   end
 
