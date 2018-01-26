@@ -31,5 +31,6 @@ module SkincareLogApi
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
     require "dotenv-rails"
+    config.time_zone = "Pacific Time (US & Canada)"
   end
 end
