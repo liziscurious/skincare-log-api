@@ -1,5 +1,5 @@
 class Product < ApplicationRecord
   belongs_to :category
-  has_many :logs
-  has_many :users, through: :logs
+  has_many :entries
+  has_many :logs, through: :entries
 end

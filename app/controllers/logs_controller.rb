@@ -3,14 +3,14 @@ class LogsController < ApplicationController
 
   # GET /logs
   def index
-    # @logs = Log.all
-    @logs = Log.where(user_id: params[:user_id]);
-    render json: @logs.to_json(include: [:product, :user])
+    @logs = Log.all
+
+    render json: @logs.to_json(include: :products)
   end
 
   # GET /logs/1
   def show
-    render json: @log.to_json(include: [:product, :user])
+    render json: @log.to_json(include: :products)
   end
 
   # POST /logs
@@ -46,6 +46,6 @@ class LogsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def log_params
-      params.require(:log).permit(:product_id, :user_id)
+      params.require(:log).permit(:name, :user_id)
     end
 end

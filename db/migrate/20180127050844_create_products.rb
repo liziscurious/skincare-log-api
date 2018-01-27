@@ -4,7 +4,6 @@ class CreateProducts < ActiveRecord::Migration[5.2]
       t.string :brand
       t.string :name
       t.integer :category_id
-      t.integer :user_id
 
       t.timestamps
     end

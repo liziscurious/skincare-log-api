@@ -5,13 +5,12 @@ class CategoriesController < ApplicationController
   def index
     @categories = Category.all
 
-    render json: @categories
+    render json: @categories.to_json(include: :products)
   end
 
   # GET /categories/1
   def show
-    products = @category.products
-    render json: { category: @category, products: products }
+    render json: @category.to_json(include: :products)
   end
 
   # POST /categories

@@ -10,9 +10,7 @@ class ProductsController < ApplicationController
 
   # GET /products/1
   def show
-    category_id = @product.category
-    user_id = @product.user_id
-    render json: { product: @product, category: category_id, user: user_id}
+    render json: @product
   end
 
   # POST /products
@@ -48,6 +46,6 @@ class ProductsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def product_params
-      params.require(:product).permit(:brand, :name, :category_id, :user_id)
+      params.require(:product).permit(:brand, :name, :category_id)
     end
 end
