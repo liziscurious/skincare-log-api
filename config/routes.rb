@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root 'welcome#index'
   resources :categories, only: [:index, :show]
   resources :products
   resources :users do
