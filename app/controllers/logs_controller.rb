@@ -3,8 +3,8 @@ class LogsController < ApplicationController
 
   # GET /logs
   def index
-    @logs = Log.all
-
+    # @logs = Log.all
+    @logs = Log.where(user_id: params[:user_id])
     render json: @logs.to_json(include: :products)
   end
 
