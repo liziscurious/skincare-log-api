@@ -23,20 +23,6 @@ Category.create(name: 'Sleeping Pack');
 Category.create(name: 'Sunscreen');
 Category.create(name: 'Body Products');
 
-Category.create(name: 'Oil Cleanser');
-Category.create(name: 'Water Cleanser');
-Category.create(name: 'Toner');
-Category.create(name: 'Essence');
-Category.create(name: 'Exfoliant');
-Category.create(name: 'Spot Treatment');
-Category.create(name: 'Serum');
-Category.create(name: 'Sheet Mask');
-Category.create(name: 'Eye Treatment');
-Category.create(name: 'Oil');
-Category.create(name: 'Moisturizer');
-Category.create(name: 'Sleeping Pack');
-Category.create(name: 'Sunscreen');
-
 Product.create(brand: 'The Face Shop', name: 'Natural Rice Water Rich Cleansing Oil', category_id: 1, url: 'http://a.co/aknCQg9');
 Product.create(brand: 'Banila', name: 'Clean It Zero', category_id: 1, url: 'http://a.co/8SuXdXD');
 Product.create(brand: 'The Face Shop', name: 'Rice Water Bright Cleansing Foam', category_id: 2, url: 'http://a.co/gne9esE');
