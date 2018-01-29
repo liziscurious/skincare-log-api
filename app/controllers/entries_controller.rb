@@ -1,11 +1,11 @@
 class EntriesController < ApplicationController
-  before_action :set_entry, only: [:show, :update, :destroy]
+  before_action :set_entry, only: [:show, :destroy]
 
   # GET /entries
   def index
     @entries = Entry.all
 
-    render json: @entries.to_json(include: :product)
+    render json: @entries.to_json(include: [:product, :index_entries_on_product_id])
   end
 
   # GET /entries/1
@@ -19,15 +19,6 @@ class EntriesController < ApplicationController
 
     if @entry.save
       render json: @entry, status: :created, location: @entries
-    else
-      render json: @entry.errors, status: :unprocessable_entity
-    end
-  end
-
-  # PATCH/PUT /entries/1
-  def update
-    if @entry.update(entry_params)
-      render json: @entry
     else
       render json: @entry.errors, status: :unprocessable_entity
     end

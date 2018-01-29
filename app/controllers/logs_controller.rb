@@ -10,7 +10,8 @@ class LogsController < ApplicationController
 
   # GET /logs/1
   def show
-    render json: @log.to_json(include: :products)
+    render json: @log.to_json(include: [:products, :entries])
+    # render json: @log.to_json(include: [:entries[include: :products]])
   end
 
   # POST /logs

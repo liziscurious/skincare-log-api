@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :update, :destroy]
+  before_action :set_user, only: [:show, :destroy]
   before_action :authenticate_token, except: [:login, :create]
   before_action :authorize_user, except: [:login, :create, :index]
 
@@ -27,15 +27,6 @@ class UsersController < ApplicationController
     end
   end
 
-  # PATCH/PUT /users/1
-  def update
-    if @user.update(user_params)
-      render json: @user
-    else
-      render json: @user.errors, status: :unprocessable_entity
-    end
-  end
-
   # DELETE /users/1
   def destroy
     @user.destroy
@@ -59,7 +50,7 @@ class UsersController < ApplicationController
       render json: { status: 401, message: "Unauthorized" }
     end
   end
-  
+
 
   private
   # Use callbacks to share common setup or constraints between actions.
